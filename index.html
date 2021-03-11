@@ -3,13 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>JavasScript Quiz App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <script src="" async defer></script>
-    <script src="questions.js" async defer></script>
+    <header>
+      <h1 id="quizTitle">JavasScript Quiz</h1>
+    </header>
+    <section>
+      <h2 id="question" class="question"></h2>
+      <div id="option" class="option"></div>
+      <p class="correctOrWrong"></p>
+    </section>
+    <script src="js/questions.js"></script>
   </body>
 </html>
