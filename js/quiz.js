@@ -1,7 +1,7 @@
 //My questions array ref:https://www.w3schools.com/js/js_arrays.asp
 let myQuestions = [
     {
-        // questionNum: 1,
+        questionNum: 1,
         question: "try to anser the following to the best of your ablities in the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!",
         answer: "Start",
         option: [
@@ -9,7 +9,7 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 2,
+        questionNum: 2,
         question: "Commonly used data type DO NOT include",
         answer: "3. alerts",
         option: [
@@ -20,7 +20,7 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 3,
+        questionNum: 3,
         question: "The condition an if / else statement is enclosed within ______.",
         answer: "2. curly brackets",
         option: [
@@ -31,7 +31,7 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 4,
+        questionNum: 4,
         question: "Arrays in JavaScript can be used to store",
         answer: "4. all of the above",
         option: [
@@ -42,7 +42,7 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 5,
+        questionNum: 5,
         question: "Strings values be enclosed within ______ when being assinged to variables",
         answer: "4. parentheses",
         option: [
@@ -53,7 +53,7 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 6,
+        questionNum: 6,
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answer: "4. console.log",
         option: [
@@ -64,7 +64,7 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 6,
+        questionNum: 7,
         question: "Game Over",
         answer: "4. console.log",
         option: [
@@ -84,3 +84,6 @@ for (let i = 0; i < myQuestions.length; i++) {
     questionSection.innerHTML = allquestions;
     console.log(allquestions);
 }
+
+// console.log(btn.click());
+            // console.log(myQuestions[qs].answer);

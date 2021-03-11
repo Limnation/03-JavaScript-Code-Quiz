@@ -1,7 +1,7 @@
 //My questions array ref:https://www.w3schools.com/js/js_arrays.asp
 let myQuestions = [
     {
-        // questionNum: 1,
+        questionNum: 1,
         question: "try to anser the following to the best of your ablities in the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!",
         answer: "Start",
         option: [
@@ -9,72 +9,75 @@ let myQuestions = [
         ]
     },
     {
-        // questionNum: 2,
+        questionNum: 2,
         question: "Commonly used data type DO NOT include",
-        answer: "3. alerts",
+        answer: "1. alerts",
         option: [
-            "1. strings",
+            "1. alerts",
             "2. booleans",
-            "3. alerts",
+            "3. strings",
             "4. functions"
         ]
     },
     {
-        // questionNum: 3,
+        questionNum: 3,
         question: "The condition an if / else statement is enclosed within ______.",
-        answer: "2. curly brackets",
+        answer: "1. curly brackets",
         option: [
-            "1. quotes",
-            "2. curly brackets",
+            "1. curly brackets",
+            "2. quotes",
             "3. parenthesis",
             "4. square brackets"
         ]
     },
     {
-        // questionNum: 4,
+        questionNum: 4,
         question: "Arrays in JavaScript can be used to store",
-        answer: "4. all of the above",
+        answer: "1. all of the above",
         option: [
-            "1. numbers and strings",
+            "1. all of the above",
             "2. other arrays",
             "3. booleans",
-            "4. all of the above"
+            "4. numbers and strings"
         ]
     },
     {
-        // questionNum: 5,
+        questionNum: 5,
         question: "Strings values be enclosed within ______ when being assinged to variables",
-        answer: "4. parentheses",
+        answer: "1. parentheses",
         option: [
-            "1. commas",
+            "1. parentheses",
             "2. curly brackets",
             "3. quotes",
-            "4. parentheses"
+            "4. commas"
         ]
     },
     {
-        // questionNum: 6,
+        questionNum: 6,
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answer: "4. console.log",
+        answer: "1. console.log",
         option: [
-            "1. JavaScript",
+            "1. console.log",
             "2. terminal",
             "3. for loops",
-            "4. console.log"
+            "4. JavaScript"
         ]
     },
     {
-        // questionNum: 6,
+        questionNum: 7,
         question: "Game Over",
-        answer: "4. console.log",
+        answer: "Reset",
         option: [
-            "Reset"]
+            "Reset"
+        ]
     }
 ];
 
-var qs = 0; //stores the current question number in the array your on
-var score = 0; // store the score of user
-var btn = document.createElement("button");
+let qs = 0; //stores the current question number in the array your on
+let score = 0; // store the score of user
+let btn = document.createElement("button");
+let correctOrWrong = document.getElementById("correctOrWrong");
+let textInputName = document.getElementById("option");
 
 // invocation of funtion eleId by x
 function eleId(x) {
@@ -98,13 +101,69 @@ function loadQuestions() {
 
 
     document.querySelectorAll("#btn").forEach(btn => { // Select all rendered options and listen for events
-        btn.onclick = () => {
-            if (qs >= (myQuestions.length -1)) {
-                location.reload();  
+        btn.onclick = function () {
+            console.log(btn.textContent);
+            console.log(myQuestions[qs].answer);
+            console.log(myQuestions.length);
+            console.log(myQuestions[qs].questionNum);
+            console.log(myQuestions[qs].questionNum === (myQuestions.length - 1));
+            correctOrWrong.style.display = "block";
+            if (qs === 0) {
+                setTime();
+            }
+            if (btn.textContent === myQuestions[qs].answer && myQuestions[qs].questionNum === 1) {
+                correctOrWrong.innerHTML = " ";
+            }
+            if (btn.textContent === myQuestions[qs].answer && myQuestions[qs].questionNum !== 1) {
+                correctOrWrong.innerHTML = "Correct!";
+                timeout()
+            }
+            if (btn.textContent !== myQuestions[qs].answer){
+                correctOrWrong.innerHTML = "Wrong!";
+                timeout()
+            }
+            if (btn.textContent !== myQuestions[qs].answer) {
+                secondsLeft = secondsLeft - 10;
+                console.log(btn.textContent !== myQuestions[qs].answer);
+            }
+            if (myQuestions[qs].questionNum === (myQuestions.length - 1)) {
+                localStorage.setItem("time", secondsLeft);
+                let secondsSaved = localStorage.getItem("time");
+                timeEl = secondsSaved;
+                textInputName.setAttribute("type", "text");
+                textInputName.setAttribute("value", "SAE");
+            }
+            if (qs >= (myQuestions.length - 1)) {
+                location.reload();
             }
             else
                 qs++;
-                loadQuestions();
+            loadQuestions();
         }
     });
+}
+
+// Selects element by class
+let timeEl = document.getElementById("time");
+
+let secondsLeft = 75;
+
+function setTime() {
+  // Sets interval in variable
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = "Time: " + secondsLeft;
+
+    if(secondsLeft === 0) {
+      // Stops execution of action at set interval
+        clearInterval(timerInterval);
+      };
+
+  }, 1000);
+}
+
+function timeout() {
+    setTimeout(function () {
+        correctOrWrong.style.display = "none";
+    }, 700);
 }
