@@ -77,7 +77,9 @@ let qs = 0; //stores the current question number in the array your on
 let score = 0; // store the score of user
 let btn = document.createElement("button");
 let correctOrWrong = document.getElementById("correctOrWrong");
-let textInputName = document.getElementById("option");
+let options = document.getElementById("option");
+let textInputName = document.createElement("input");
+let questions = document.getElementById("question")
 
 // invocation of funtion eleId by x
 function eleId(x) {
@@ -107,6 +109,7 @@ function loadQuestions() {
             console.log(myQuestions.length);
             console.log(myQuestions[qs].questionNum);
             console.log(myQuestions[qs].questionNum === (myQuestions.length - 1));
+            console.log(myQuestions[6].option[0]);
             correctOrWrong.style.display = "block";
             if (qs === 0) {
                 setTime();
@@ -127,11 +130,13 @@ function loadQuestions() {
                 console.log(btn.textContent !== myQuestions[qs].answer);
             }
             if (myQuestions[qs].questionNum === (myQuestions.length - 1)) {
+                options.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initial" name="initial">`;
                 localStorage.setItem("time", secondsLeft);
                 let secondsSaved = localStorage.getItem("time");
                 timeEl = secondsSaved;
-                textInputName.setAttribute("type", "text");
-                textInputName.setAttribute("value", "SAE");
+                // textInputName.setAttribute("type", "text");
+                // textInputName.setAttribute("value", "SAE");
+                // questions.appendChild(textInputName);
             }
             if (qs >= (myQuestions.length - 1)) {
                 location.reload();
@@ -146,7 +151,7 @@ function loadQuestions() {
 // Selects element by class
 let timeEl = document.getElementById("time");
 
-let secondsLeft = 75;
+let secondsLeft = 5;
 
 function setTime() {
   // Sets interval in variable
@@ -157,7 +162,14 @@ function setTime() {
     if(secondsLeft === 0) {
       // Stops execution of action at set interval
         clearInterval(timerInterval);
+        clearout()
+        question.innerHTML += `${myQuestions[6].question}`
+        options.innerHTML += `<button id="btn" class="btn">${myQuestions[6].option[0]}</button>`
+        options.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initial" name="initial">`;
       };
+    if (myQuestions[qs].questionNum > (myQuestions.length - 1)) {
+        clearInterval(timerInterval);
+    }
 
   }, 1000);
 }
@@ -166,4 +178,10 @@ function timeout() {
     setTimeout(function () {
         correctOrWrong.style.display = "none";
     }, 700);
+}
+
+function clearout() {
+    eleId("question").innerHTML = "";
+
+    eleId("option").innerHTML = "";
 }

@@ -49,3 +49,22 @@ section {
   font-size: 20px;
   color: #000000;
 }
+
+input[type="text"] {
+  margin: 20px 0px;
+  height: 30px;
+  position: relative;
+  left: 0;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, 0.15);
+  background-color: white;
+  font-size: 25px;
+}
+
+#initial {
+  width: 30%;
+  margin-right: 1px;
+  font-size: 25px;
+  margin: 20px 0px;
+}
