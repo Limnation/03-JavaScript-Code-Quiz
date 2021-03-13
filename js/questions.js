@@ -84,8 +84,8 @@ let scores = document.getElementById("scores")
 const initialsEl = $('#initials');
 const highscoreBtn = $('#highscores');
 const highscorelist = $('#highscorelist');
-let scoreSaved;
-let secondsSaved;
+let scoreSaved = [];
+let secondsSaved = [];
 // invocation of funtion eleId by x
 function eleId(x) {
     return document.getElementById(x);
@@ -190,7 +190,7 @@ function textbox() {
 
 function storeTime(secondsSaved) {
     localStorage.setItem("time", JSON.stringify(secondsLeft));
-    secondsSaved = JSON.parse(localStorage.getItem("time"));
+    secondsSaved += JSON.parse(localStorage.getItem("time"));
     timeEl = secondsSaved;
     return secondsSaved;
 }
@@ -198,7 +198,7 @@ function storeTime(secondsSaved) {
 function storeinitials(scoreSaved) {
     initialsText = $('#initials').val();
     localStorage.setItem("initials", JSON.stringify(initialsText));
-    scoreSaved = JSON.parse(localStorage.getItem("initials"));
+    scoreSaved += JSON.parse(localStorage.getItem("initials"));
     return scoreSaved;
 }
 
@@ -210,19 +210,11 @@ $("#scores").submit(function (e) {
     }
     else {
         storeinitials();
-        clearout();
+        eleId("question").innerHTML = "";
         scores.style.display = "none";
         document.getElementById("time").style.display = "none";
         $("#highscorelist").append(`<h3>High Score</h3>`);
-        $("#highscorelist").append(`<p>Initials: ${storeinitials(scoreSaved)} Score: ${storeTime(secondsSaved)}</p>`);
+        $("#highscorelist").append(`<p class="highscore">Initials: ${storeinitials(scoreSaved)} Score: ${storeTime(secondsSaved)}</p>`);
         
     }
 });
-
-
-
-// highscoreslist.innerHTML = scoreSaved
-//     .map(score => {
-//         return `<p class="high-scores"> ${scoredSaved}`
-//     })
-//     .join("");
