@@ -81,11 +81,11 @@ let options = document.getElementById("option");
 let textInputName = document.createElement("input");
 let questions = document.getElementById("question")
 let scores = document.getElementById("scores")
-let initialsEl = $('#initials');
-let highscoreBtn = $('#highscores');
-let highscorelist = $('#highscorelist');
-// let scoreSaved = "";
-// let secondsSaved = "";
+const initialsEl = $('#initials');
+const highscoreBtn = $('#highscores');
+const highscorelist = $('#highscorelist');
+let scoreSaved;
+let secondsSaved;
 // invocation of funtion eleId by x
 function eleId(x) {
     return document.getElementById(x);
@@ -156,7 +156,7 @@ let secondsLeft = 75;
 
 function setTime() {
   // Sets interval in variable
-  var timerInterval = setInterval(function() {
+  let timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = "Time: " + secondsLeft;
 
@@ -188,22 +188,23 @@ function textbox() {
     // scores.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initials" name="initials"><button id="highscores" class="btn">highscore</button>`;
 }
 
-function storeTime() {
+function storeTime(secondsSaved) {
     localStorage.setItem("time", JSON.stringify(secondsLeft));
-    let secondsSaved = JSON.parse(localStorage.getItem("time"));
+    secondsSaved = JSON.parse(localStorage.getItem("time"));
     timeEl = secondsSaved;
+    return secondsSaved;
 }
 
-function storeinitials() {
-    let initialsText = $('#initials').val();
+function storeinitials(scoreSaved) {
+    initialsText = $('#initials').val();
     localStorage.setItem("initials", JSON.stringify(initialsText));
-    let scoreSaved = JSON.parse(localStorage.getItem("initials"));
-    console.log(scoreSaved);
+    scoreSaved = JSON.parse(localStorage.getItem("initials"));
+    return scoreSaved;
 }
 
 $("#scores").submit(function (e) {
     e.preventDefault();
-    let initialsText = $('#initials').val();
+    initialsText = $('#initials').val();
     if (initialsText.length <= 0 ) {
         alert("Please put in something");
     }
@@ -211,7 +212,9 @@ $("#scores").submit(function (e) {
         storeinitials();
         clearout();
         scores.style.display = "none";
-        $("#highscorelist").append(`<p>Initials: ${scoredSaved} Score: ${secondsSaved}</p>`);
+        document.getElementById("time").style.display = "none";
+        $("#highscorelist").append(`<h3>High Score</h3>`);
+        $("#highscorelist").append(`<p>Initials: ${storeinitials(scoreSaved)} Score: ${storeTime(secondsSaved)}</p>`);
         
     }
 });
