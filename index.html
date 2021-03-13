@@ -16,8 +16,16 @@
       <h3 id="time" ></h1>
       <h2 id="question" class="question"></h2>
       <div id="option" class="option"></div>
+      <form id="scores">
+        <label id="initial" for="fname">Initials: </label>
+        <input type="text" id="initials" name="initials">
+        <button id="highscores" class="btn">highscore</button>
+      </form>
+      <div id="highscorelist"></div>
       <p id="correctOrWrong" class="correctOrWrong"></p>
     </section>
+    <!-- Added link to the jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/questions.js"></script>
   </body>
 </html>

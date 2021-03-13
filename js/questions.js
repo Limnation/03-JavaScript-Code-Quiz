@@ -70,7 +70,7 @@ let myQuestions = [
         option: [
             "Reset"
         ]
-    }
+    },
 ];
 
 let qs = 0; //stores the current question number in the array your on
@@ -80,7 +80,12 @@ let correctOrWrong = document.getElementById("correctOrWrong");
 let options = document.getElementById("option");
 let textInputName = document.createElement("input");
 let questions = document.getElementById("question")
-
+let scores = document.getElementById("scores")
+let initialsEl = $('#initials');
+let highscoreBtn = $('#highscores');
+let highscorelist = $('#highscorelist');
+// let scoreSaved = "";
+// let secondsSaved = "";
 // invocation of funtion eleId by x
 function eleId(x) {
     return document.getElementById(x);
@@ -130,13 +135,9 @@ function loadQuestions() {
                 console.log(btn.textContent !== myQuestions[qs].answer);
             }
             if (myQuestions[qs].questionNum === (myQuestions.length - 1)) {
-                options.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initial" name="initial">`;
-                localStorage.setItem("time", secondsLeft);
-                let secondsSaved = localStorage.getItem("time");
-                timeEl = secondsSaved;
-                // textInputName.setAttribute("type", "text");
-                // textInputName.setAttribute("value", "SAE");
-                // questions.appendChild(textInputName);
+                storeTime()
+                textbox()
+                storeinitials()
             }
             if (qs >= (myQuestions.length - 1)) {
                 location.reload();
@@ -151,7 +152,7 @@ function loadQuestions() {
 // Selects element by class
 let timeEl = document.getElementById("time");
 
-let secondsLeft = 5;
+let secondsLeft = 75;
 
 function setTime() {
   // Sets interval in variable
@@ -163,11 +164,8 @@ function setTime() {
       // Stops execution of action at set interval
         clearInterval(timerInterval);
         clearout()
-        question.innerHTML += `${myQuestions[6].question}`
-        options.innerHTML += `<button id="btn" class="btn">${myQuestions[6].option[0]}</button>`
-        options.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initial" name="initial">`;
       };
-    if (myQuestions[qs].questionNum > (myQuestions.length - 1)) {
+      if (myQuestions[qs].questionNum > (myQuestions.length - 1)) {
         clearInterval(timerInterval);
     }
 
@@ -182,6 +180,46 @@ function timeout() {
 
 function clearout() {
     eleId("question").innerHTML = "";
-
     eleId("option").innerHTML = "";
 }
+
+function textbox() {
+    scores.style.display = "block";
+    // scores.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initials" name="initials"><button id="highscores" class="btn">highscore</button>`;
+}
+
+function storeTime() {
+    localStorage.setItem("time", JSON.stringify(secondsLeft));
+    let secondsSaved = JSON.parse(localStorage.getItem("time"));
+    timeEl = secondsSaved;
+}
+
+function storeinitials() {
+    let initialsText = $('#initials').val();
+    localStorage.setItem("initials", JSON.stringify(initialsText));
+    let scoreSaved = JSON.parse(localStorage.getItem("initials"));
+    console.log(scoreSaved);
+}
+
+$("#scores").submit(function (e) {
+    e.preventDefault();
+    let initialsText = $('#initials').val();
+    if (initialsText.length <= 0 ) {
+        alert("Please put in something");
+    }
+    else {
+        storeinitials();
+        clearout();
+        scores.style.display = "none";
+        $("#highscorelist").append(`<p>Initials: ${scoredSaved} Score: ${secondsSaved}</p>`);
+        
+    }
+});
+
+
+
+// highscoreslist.innerHTML = scoreSaved
+//     .map(score => {
+//         return `<p class="high-scores"> ${scoredSaved}`
+//     })
+//     .join("");

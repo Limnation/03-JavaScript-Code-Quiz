@@ -1,5 +1,23 @@
 # 04 Web APIs: JavaScript Code Quiz
 
+## Myreadme with description
+
+The main objective I am trying to accomplish with this site is to make a javascript code quiz. The main goal I had when writing the code was to make most of this project with Dom monipulation, same JSON, localstorage properties and as little code done in my html as possible. Also was trying to make it so it would all be done in one section in my html too.
+
+## screenshot
+
+"confirm() method"
+![screenshot1](./Assets/1.JPG)
+![screenshot2](./Assets/2.JPG)
+![screenshot3](./Assets/3.JPG)
+![screenshot4](./Assets/4.JPG)
+
+# link to deployed application
+
+[repository](https://github.com/Limnation/04-javascript-code-quiz)
+
+[published](https://limnation.github.io/04-javascript-code-quiz/)
+
 ## Your Task
 
 At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges.
