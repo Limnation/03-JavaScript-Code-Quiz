@@ -164,6 +164,7 @@ function setTime() {
       // Stops execution of action at set interval
         clearInterval(timerInterval);
         clearout()
+        location.reload();
       };
       if (myQuestions[qs].questionNum > (myQuestions.length - 1)) {
         clearInterval(timerInterval);
@@ -198,7 +199,7 @@ function storeTime(secondsSaved) {
 function storeinitials(scoreSaved) {
     initialsText = $('#initials').val();
     localStorage.setItem("initials", JSON.stringify(initialsText));
-    scoreSaved += JSON.parse(localStorage.getItem("initials"));
+    var scoreSaved = JSON.parse(localStorage.getItem("initials")) || [];
     return scoreSaved;
 }
 
@@ -218,3 +219,11 @@ $("#scores").submit(function (e) {
         
     }
 });
+
+
+
+// highscoreslist.innerHTML = scoreSaved
+//     .map(score => {
+//         return `<p class="high-scores"> ${scoredSaved}`
+//     })
+//     .join("");
