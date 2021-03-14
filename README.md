@@ -6,7 +6,6 @@ The main objective I am trying to accomplish with this site is to make a javascr
 
 ## screenshot
 
-"confirm() method"
 ![screenshot1](./Assets/1.JPG)
 ![screenshot2](./Assets/2.JPG)
 ![screenshot3](./Assets/3.JPG)

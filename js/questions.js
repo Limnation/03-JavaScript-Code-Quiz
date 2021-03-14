@@ -186,7 +186,6 @@ function clearout() {
 
 function textbox() {
     scores.style.display = "block";
-    // scores.innerHTML += `<label id="initial" for="fname">Initials: </label><input type="text" id="initials" name="initials"><button id="highscores" class="btn">highscore</button>`;
 }
 
 function storeTime(secondsSaved) {
